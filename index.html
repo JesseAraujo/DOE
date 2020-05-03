@@ -54,7 +54,9 @@
 
                     <div class="donor">
                         <div class="blood">{{donor.blood}}</div>
-                        <p>{{donor.name}}</p>
+                         <a href="#" onclick="onOff()" title="Ver todos dados de {{donor.name}} ">
+                            <p>{{donor.name}}</p>
+                        </a> 
                     </div>
 
                 {%endfor%}
@@ -65,6 +67,21 @@
         <footer>
             Com 😍 Jessé Brisola
         </footer>  
+
+
+        <!--- MODAL --------------------->
+        <div id="modal" class="hide" >
+            <div class="content">
+                <h1>Dados do <span>doador</span></h1>
+                <p>{{donor.name}}</p>
+                <p>Jessé Brisola de Araujo</p>
+                <p>Jessé Brisola de Araujo</p>
+            </div>
+
+            <div class="delete">                     
+                <a href="" title="Deletar"></a>
+            </div>
+        </div>
         
         <script src="/scripts.js"></script>
     </body>

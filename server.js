@@ -26,6 +26,8 @@ nunjucks.configure("./", {
     noCache: true,
 })
 
+//////////////////////////////////////////////////////////////////////////////////
+//GET    /
 
 //configurar a apresentaçã da página
 server.get("/", function(req, res){
@@ -38,6 +40,22 @@ server.get("/", function(req, res){
     })    
 })
 
+server.get("/", function(req, res){
+    const  id  = req.params.id
+    
+   db.query("SELECT * FROM donors WHERE id = ?",[id], function (err, result) {
+        if (err) {
+            console.log(id)
+            return res.send("Erro no banco de dados.")
+        }
+        const donors = result.rows
+        return res.render("index.html", { donors })
+    })    
+})
+
+
+
+//POST    /
 server.post("/", function(req, res) {
     //pegar dados do formulário
     const name = req.body.name
@@ -62,6 +80,9 @@ server.post("/", function(req, res) {
     })    
 })
 
+
+
+//////////////////////////////////////////////////////////////////////////////////
 //ligar servidor e permitir o acesso na porta 8000
 server.listen(8000, function(){
     console.log("Iniciei o Servidor")

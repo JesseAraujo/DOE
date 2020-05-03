@@ -144,9 +144,11 @@ main .donors {
     transform: rotate(-45deg);
 }
 
-.donor p{
+.donor a{
     margin: 24px 0 40px;
     font-size: 14px;
+    text-decoration: none;
+    color: #000000cc;
 }
 
 /* --------------------------------------  FOOTER */
@@ -167,3 +169,69 @@ section.form.hide {
     height: 0;
     margin-top: -70px;
 }
+
+/*----------------------- modal */
+
+/* modal */
+#modal{
+    background: #ff4f4f;
+    position: fixed; 
+    top: 200px;
+    bottom: 200px;
+    right: 300px;
+    left: 300px; 
+    
+    display: flex;
+    justify-content: center;
+
+    transition: 400ms;
+
+    border-radius: 8px;
+}
+
+#modal .content{
+    text-align: center;
+    margin-top: 5%;
+    color: #fff;
+}
+
+#modal .content h1{
+    text-align: center;
+    color: #000000cc;
+}
+
+#modal .content span{
+    color: #fff;
+}
+
+#modal .delete > a {
+    background: url(./delete.png) no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    top: 20px;
+    right: 30px;
+
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    display: flex;
+    justify-content: end;
+
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+#modal .delete > a:hover{
+    opacity: 0.7;
+}
+
+#modal.hide{
+    opacity: 0;
+    visibility: hidden;
+ 
+ }
