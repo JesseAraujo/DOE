@@ -30,28 +30,49 @@ nunjucks.configure("./", {
 //GET    /
 
 //configurar a apresentaçã da página
-server.get("/", function(req, res){
+server.get("/", function(req, res, next){
     
     db.query("SELECT * FROM donors", function (err, result) {
         if (err) return res.send("Erro no banco de dados.")
 
-        const donors = result.rows
+        let donors = result.rows
         return res.render("index.html", { donors })
-    })    
-})
 
-server.get("/", function(req, res){
-    const  id  = req.params.id
+        next()
+    })
+    }, function(req, re){
+        const  button  = req.body.id
     
-   db.query("SELECT * FROM donors WHERE id = ?",[id], function (err, result) {
-        if (err) {
-            console.log(id)
-            return res.send("Erro no banco de dados.")
-        }
-        const donors = result.rows
-        return res.render("index.html", { donors })
-    })    
-})
+        const query = "SELECT * FROM donors WHERE id == "+[button]
+          
+        db.query(query, function(err) {
+            if (err){
+                return res.send("Erro no banco de dados.")            
+            }
+                    
+             donors = result.rows
+            return res.render("index.html", { donors }) 
+            
+        })    
+    }
+)
+
+//server.get("/", function(req, re){
+   // const  id  = req.params.id
+
+   // const query = "SELECT * FROM donors WHERE id = "+[id]
+      
+   // db.query(query, function(err) {
+   //     if (err){
+    //        console.log(err)
+    //        return res.send("Erro no banco de dados.")            
+    //    }
+    //            
+    //    const donors = result.rows
+    //    return res.send(donors)   
+        
+    //})    
+//})
 
 
 

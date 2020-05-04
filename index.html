@@ -54,7 +54,7 @@
 
                     <div class="donor">
                         <div class="blood">{{donor.blood}}</div>
-                         <a href="#" onclick="onOff()" title="Ver todos dados de {{donor.name}} ">
+                         <a href="#" id="button" onclick="onOff()" title="Ver todos dados de {{donor.id}} ">
                             <p>{{donor.name}}</p>
                         </a> 
                     </div>
@@ -70,12 +70,13 @@
 
 
         <!--- MODAL --------------------->
-        <div id="modal" class="hide" >
+        <div id="modal" class="hide">
             <div class="content">
-                <h1>Dados do <span>doador</span></h1>
-                <p>{{donor.name}}</p>
-                <p>Jessé Brisola de Araujo</p>
-                <p>Jessé Brisola de Araujo</p>
+                {% asyncAll  donor in donors %}
+                    <h1>Dados do <span>doador</span></h1>
+                    <p>{{donor.name }}</p>
+                {% endall  %}
+                
             </div>
 
             <div class="delete">                     
